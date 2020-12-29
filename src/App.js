@@ -1,25 +1,58 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import Home from './components/Home';
+import Dashboard from './components/Dashboard';
+import Signup from './components/Signup';
+import Login from './components/Login';
+import Navbar from './components/Navbar';
+import { checkLoggedIn } from './redux/actions/authActions';
+import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  state = {
+    loading: true,
+  };
+
+  toggleLoading = () => {
+    this.setState({ loading: !this.state.loading });
+  };
+
+  componentDidMount() {
+    this.props.checkLoggedIn(this.toggleLoading);
+  }
+
+  render() {
+    if (this.state.loading) return <h1>Loading...</h1>;
+    return (
+      <div className="App">
+        <Router>
+          <Navbar />
+          <Switch>
+            <Route exact path="/" component={Home} />
+            <Route
+              path="/dashboard"
+              render={(props) => {
+                if (this.props.loggedIn) {
+                  return <Dashboard {...props} />;
+                } else {
+                  return <Redirect to="/login" />;
+                }
+              }}
+            />
+            <Route path="/signup" component={Signup} />
+            <Route path="/login" component={Login} />
+          </Switch>
+        </Router>
+      </div>
+    );
+  }
 }
 
-export default App;
+const mapStateToProps = (state) => {
+  return {
+    loggedIn: state.auth.loggedIn,
+  };
+};
+
+export default connect(mapStateToProps, { checkLoggedIn })(App);
