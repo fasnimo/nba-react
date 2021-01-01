@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { login } from '../redux/actions/authActions';
 import { connect } from 'react-redux';
 
+//  If user enters wrong password then through error.
+
 class Login extends Component {
   state = {
     email: '',
