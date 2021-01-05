@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { login } from '../redux/actions/authActions';
 import { connect } from 'react-redux';
+import "bootstrap/dist/css/bootstrap.min.css";
+import {Button, Form, Container} from "react-bootstrap";
 
 //  If user enters wrong password then through error.
 
@@ -24,25 +26,27 @@ class Login extends Component {
   render() {
     return (
       <div>
-        <form onSubmit={this.handleOnSubmit}>
-          <label>Email</label>
-          <input
+        <Container>
+        <Form onSubmit={this.handleOnSubmit}>
+          <Form.Label>Email</Form.Label>
+          <Form.Control
             name="email"
             value={this.state.email}
             onChange={this.handleOnChange}
             type="text"
           />
           <br />
-          <label>Password</label>
-          <input
+          <Form.Label>Password</Form.Label>
+          <Form.Control
             name="password"
             value={this.state.password}
             onChange={this.handleOnChange}
             type="text"
           />
           <br />
-          <button type="submit">Login</button>
-        </form>
+          <Button type="submit">Login</Button>
+        </Form>
+        </Container>
       </div>
     );
   }

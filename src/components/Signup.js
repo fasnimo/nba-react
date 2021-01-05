@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { signup } from '../redux/actions/authActions';
 import { connect } from 'react-redux';
+import "bootstrap/dist/css/bootstrap.min.css";
+import {Button, Form, Container} from "react-bootstrap";
+
 
 class Signup extends Component {
   state = {
@@ -23,33 +26,35 @@ class Signup extends Component {
   render() {
     return (
       <div>
-        <form onSubmit={this.handleOnSubmit}>
-          <label>Email</label>
-          <input
+          <Container>
+        <Form onSubmit={this.handleOnSubmit}>
+          <Form.Label>Email</Form.Label>
+          <Form.Control
             name="email"
             value={this.state.email}
             onChange={this.handleOnChange}
             type="text"
           />
           <br />
-          <label>Password</label>
-          <input
+          <Form.Label>Password</Form.Label>
+          <Form.Control
             name="password"
             value={this.state.password}
             onChange={this.handleOnChange}
             type="text"
           />
           <br />
-          <label>Confirm Password</label>
-          <input
+          <Form.Label>Confirm Password</Form.Label>
+          <Form.Control
             name="password_confirmation"
             value={this.state.password_confirmation}
             onChange={this.handleOnChange}
             type="text"
           />
           <br />
-          <button type="submit">Signup</button>
-        </form>
+          <Button type="submit">Signup</Button>
+        </Form>
+        </Container>
       </div>
     );
   }
