@@ -10,7 +10,6 @@ export const signup = (user, history) => {
       })
         .then((res) => res.json())
         .then((data) => {
-          console.log(data);
           dispatch({
             type: 'AUTH_SUCCESSFUL',
             payload: { loggedIn: data.logged_in, currentUser: data.user },
@@ -19,6 +18,7 @@ export const signup = (user, history) => {
         });
     };
   };
+
   export const login = (user, history) => {
     return (dispatch) => {
       fetch(`http://localhost:3001/sessions`, {
@@ -40,6 +40,7 @@ export const signup = (user, history) => {
     };
   };
   
+  // JSON return check
   export const checkLoggedIn = (callback) => {
     return (dispatch) => {
       fetch(`http://localhost:3001/logged_in`, {
