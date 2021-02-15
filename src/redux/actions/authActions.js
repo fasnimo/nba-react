@@ -4,6 +4,7 @@ export const signup = (user, history) => {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'Accept': 'application/json',
         },
         credentials: 'include',
         body: JSON.stringify({ user: user }),
@@ -25,6 +26,7 @@ export const signup = (user, history) => {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'Accept': 'application/json',
         },
         credentials: 'include',
         body: JSON.stringify({ user: user }),

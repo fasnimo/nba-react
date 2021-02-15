@@ -11,7 +11,7 @@ import { Redirect } from 'react-router-dom';
 
 class App extends Component {
   state = {
-    loading: false,
+    loading: true,
   };
 
   toggleLoading = () => {
