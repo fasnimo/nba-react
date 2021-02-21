@@ -4,8 +4,6 @@ import { connect } from 'react-redux';
 import "bootstrap/dist/css/bootstrap.min.css";
 import {Button, Form, Container} from "react-bootstrap";
 
-//  If user enters wrong password then through error.
-
 class Login extends Component {
   state = {
     email: '',
