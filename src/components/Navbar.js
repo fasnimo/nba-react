@@ -23,6 +23,7 @@ class Navbar extends Component {
             <Link to="/login">Login</Link>
           </>
         )}
+        <hr/>
       </div>
     );
   }
